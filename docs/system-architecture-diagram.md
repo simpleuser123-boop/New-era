@@ -1,0 +1,233 @@
+# New Era 系统架构图
+
+> 版本基线：当前仓库 v3.2，按 2026-06-11 的 live code 与演进文档整理。
+>
+> 可编辑图源：`docs/system-architecture-diagram.mmd`
+>
+> 已导出图片：`docs/system-architecture-diagram.svg`、`docs/system-architecture-diagram.png`、`docs/system-architecture-diagram@4x.png`
+
+## 主架构图
+
+```mermaid
+%% New Era current system architecture, based on the live v3.2 codebase.
+flowchart LR
+  U([用户 / 本地浏览器])
+  AuthGate{"Owner 登录态<br/>页面与 API 权限"}
+  AuthPage["/auth<br/>注册 / 登录 / 账号安全"]
+
+  U --> AuthGate
+  AuthGate -->|"未登录"| AuthPage
+  AuthGate -->|"已登录"| UIHub
+  AuthPage --> AuthApi
+
+  subgraph UI["前端体验层 - Next.js App Router + AppShell"]
+    UIHub["页面工作台<br/>React 19 + Tailwind 4"]
+    HomePage["首页 /<br/>本地指标与快捷入口"]
+    CareerPage["求职画像 /career<br/>Career DNA 与建议"]
+    ResumePage["简历管理 /resume<br/>解析 / 匹配 / Resume Judge"]
+    RiskPage["风险扫描 /risks<br/>单岗验真 / 真假对决 / 识别质量"]
+    EvaluatePage["JD 评估 /evaluate<br/>SSE 评估与报告"]
+    TrackerPage["投递管理 /applications<br/>状态 / 时间线 / 逾期跟进"]
+    InterviewPage["面试教练 /interview<br/>问题生成 / 回答评分 / STAR"]
+    AnalyticsPage["求职分析 /analytics<br/>漏斗 / 方向 / 技能缺口"]
+    InsightsPage["行业趋势 /insights<br/>趋势与市场简报"]
+    ReportsPage["评估历史 /reports<br/>报告列表 / 详情 / 删除确认"]
+    AssistantPage["Agent 工作台 /assistant<br/>流式阶段 / 工具调用 / 记忆"]
+    SettingsPage["设置 /settings<br/>数据导出 / 清理 / 账号"]
+
+    UIHub --> HomePage
+    UIHub --> CareerPage
+    UIHub --> ResumePage
+    UIHub --> RiskPage
+    UIHub --> EvaluatePage
+    UIHub --> TrackerPage
+    UIHub --> InterviewPage
+    UIHub --> AnalyticsPage
+    UIHub --> InsightsPage
+    UIHub --> ReportsPage
+    UIHub --> AssistantPage
+    UIHub --> SettingsPage
+  end
+
+  UIHub -->|"fetch / apiRequest / SSE"| APIHub
+
+  subgraph API["API 路由层 - src/app/api"]
+    APIHub["统一 API 入口<br/>Zod 校验 + apiSuccess/apiError<br/>Node runtime + 动态路由"]
+    AuthApi["鉴权 API<br/>register / login / logout / me / password"]
+    EvalApi["评估 API<br/>/api/evaluate<br/>/api/evaluate/stream<br/>/api/jd/fetch"]
+    RiskApi["岗位验真 API<br/>/api/scan-risks<br/>/api/risk-benchmark<br/>/api/risk-feedback<br/>/api/risk-verification-questions"]
+    ResumeApi["简历 API<br/>parse / save / match / optimize<br/>judge / ats-check / feedback"]
+    TrackerApi["Tracker API<br/>applications / events / stats"]
+    CareerApi["Career DNA API<br/>career-profile / suggestions"]
+    AnalyticsApi["Analytics API<br/>本地聚合分析"]
+    InterviewApi["Interview API<br/>sessions / questions / answers"]
+    AgentApi["Agent API<br/>run / actions / sessions / memory"]
+    ReportsApi["Reports API<br/>reports / reports/:id"]
+    InsightsApi["Insights API<br/>trends / brief"]
+    DataApi["治理 API<br/>export / data-clear / settings / health"]
+
+    APIHub --> AuthApi
+    APIHub --> EvalApi
+    APIHub --> RiskApi
+    APIHub --> ResumeApi
+    APIHub --> TrackerApi
+    APIHub --> CareerApi
+    APIHub --> AnalyticsApi
+    APIHub --> InterviewApi
+    APIHub --> AgentApi
+    APIHub --> ReportsApi
+    APIHub --> InsightsApi
+    APIHub --> DataApi
+  end
+
+  subgraph Engines["服务端业务能力层 - src/lib"]
+    EvalEngine["JD 评估引擎<br/>evaluate-engine / resume-match<br/>评估报告结构化"]
+    RiskEngine["真/假 AI 岗识别<br/>risk-engine + semantic-risk-engine<br/>规则版本 / 证据 / 建议"]
+    RiskQuality["风险质量闭环<br/>benchmark 指标 / 反馈记录 / HR 核实问题"]
+    ResumeEngine["简历能力<br/>resume-parser / resume-ai<br/>resume-judge / ATS / 优化反馈"]
+    TrackerService["投递工作台<br/>applications + events<br/>状态流转与跟进"]
+    CareerService["Career DNA<br/>画像存储 / 建议生成 / 匹配解释"]
+    AnalyticsService["本地分析聚合<br/>报告 / 简历 / Tracker / 画像"]
+    InterviewEngine["面试教练<br/>interview-coach / stories<br/>问题生成与答案评分"]
+    InsightsEngine["行业洞察<br/>趋势 / 简报 / fallback"]
+    ExportService["数据治理<br/>导出 / 清理 / 来源边界"]
+  end
+
+  EvalApi --> EvalEngine
+  RiskApi --> RiskEngine
+  RiskEngine --> RiskQuality
+  ResumeApi --> ResumeEngine
+  TrackerApi --> TrackerService
+  CareerApi --> CareerService
+  AnalyticsApi --> AnalyticsService
+  InterviewApi --> InterviewEngine
+  InsightsApi --> InsightsEngine
+  ReportsApi --> EvalEngine
+  DataApi --> ExportService
+
+  subgraph Agent["多 Agent 执行层 - src/lib/agent"]
+    AgentRun["/api/agent/run<br/>服务端 SSE ReAct Loop"]
+    AgentRouter{"意图路由<br/>确定性规则 + 上下文"}
+    AgentDefs["6 个子 Agent<br/>Tracker / Evaluate / Resume<br/>Interview / Career / General"]
+    ToolRegistry{"Tool Registry<br/>工具白名单 + 参数校验"}
+    QueryTools["Query Tools 只读<br/>reports / applications / analytics<br/>career / resumes / interview"]
+    ActionTools["Action Tools<br/>只创建待确认 proposal"]
+    AgentSessions["会话与可控记忆<br/>可查看 / 编辑 / 删除 / 导出"]
+    ActionConfirm["确认式动作 API<br/>confirm / dismiss<br/>确认后才复用业务写入"]
+
+    AgentRun --> AgentRouter
+    AgentRouter --> AgentDefs
+    AgentDefs --> ToolRegistry
+    ToolRegistry -->|"读本地上下文"| QueryTools
+    ToolRegistry -->|"写入意图"| ActionTools
+    AgentRun --> AgentSessions
+    ActionTools --> ActionConfirm
+  end
+
+  AgentApi --> AgentRun
+  QueryTools --> AnalyticsService
+  QueryTools --> EvalEngine
+  QueryTools --> ResumeEngine
+  QueryTools --> TrackerService
+  QueryTools --> CareerService
+  QueryTools --> InterviewEngine
+  ActionConfirm --> TrackerService
+  ActionConfirm --> CareerService
+  ActionConfirm --> ResumeEngine
+  ActionConfirm --> InterviewEngine
+
+  subgraph Data["本地数据层 - data/new-era.db"]
+    DBCore["server-db.ts<br/>better-sqlite3 + WAL<br/>幂等迁移 / Zod 映射"]
+    AuthTables["users<br/>auth_sessions<br/>auth_events"]
+    CoreTables["reports<br/>resumes<br/>settings"]
+    TrackerTables["applications<br/>application_events"]
+    AgentTables["agent_action_proposals<br/>agent_sessions<br/>agent_memory_items"]
+    InterviewTables["interview_sessions<br/>interview_answers<br/>stories"]
+    QualityTables["risk_feedback<br/>resume_optimization_runs<br/>optimization_feedback"]
+
+    DBCore --> AuthTables
+    DBCore --> CoreTables
+    DBCore --> TrackerTables
+    DBCore --> AgentTables
+    DBCore --> InterviewTables
+    DBCore --> QualityTables
+  end
+
+  AuthApi --> DBCore
+  EvalEngine --> DBCore
+  RiskQuality --> DBCore
+  ResumeEngine --> DBCore
+  TrackerService --> DBCore
+  CareerService --> DBCore
+  AnalyticsService --> DBCore
+  InterviewEngine --> DBCore
+  ExportService --> DBCore
+  AgentSessions --> DBCore
+  ActionTools --> AgentTables
+
+  subgraph External["受控外部依赖"]
+    DeepSeek["DeepSeek / 兼容模型 API<br/>评估 / 语义增强 / Agent 回答<br/>不可用时走受控 fallback"]
+    WebSearch["公开网页搜索 web_search<br/>只读摘要与 URL<br/>按需使用，不写库"]
+    JdFetch["JD URL 抓取<br/>fetch + Cheerio<br/>不接招聘平台账号"]
+    Presets["本地预置与 benchmark<br/>preset-jds.json<br/>risk-benchmark-jds.jsonl"]
+  end
+
+  EvalEngine -. "模型增强 / fallback" .-> DeepSeek
+  RiskEngine -. "语义补充 / fallback" .-> DeepSeek
+  AgentRun -. "工具规划 / 回答生成 / fallback" .-> DeepSeek
+  InsightsEngine -. "简报增强 / fallback" .-> DeepSeek
+  ToolRegistry -. "仅在需要最新公开信息时" .-> WebSearch
+  EvalApi -. "URL JD 读取" .-> JdFetch
+  RiskEngine --> Presets
+  RiskQuality --> Presets
+
+  subgraph Guard["安全与产品边界"]
+    LocalFirst["Local-first<br/>业务数据优先本地 SQLite"]
+    ProtectedAccess["受保护页面与 API<br/>owner session cookie"]
+    QueryReadonly["Query 工具只读<br/>反复调用不污染数据"]
+    ProposalOnly["Action 必须先生成待确认动作<br/>LLM 不直接写业务表"]
+    NoPlatformOps["不自动投递<br/>不自动联系 HR<br/>不接招聘平台授权"]
+    SourceBoundary["Demo / fallback / benchmark<br/>必须标记来源与限制"]
+  end
+
+  AuthGate -.-> ProtectedAccess
+  DBCore -.-> LocalFirst
+  QueryTools -.-> QueryReadonly
+  ActionTools -.-> ProposalOnly
+  APIHub -.-> NoPlatformOps
+  RiskQuality -.-> SourceBoundary
+
+  classDef user fill:#fff7e6,stroke:#c4873a,color:#2d2a26;
+  classDef ui fill:#f8f7f4,stroke:#c7b9a5,color:#2d2a26;
+  classDef api fill:#eef6ff,stroke:#5c8fc7,color:#1f2b3a;
+  classDef engine fill:#f1f8ec,stroke:#6f9f5f,color:#1f3520;
+  classDef agent fill:#f3eefc,stroke:#8b6fc7,color:#2b2040;
+  classDef data fill:#fff3ef,stroke:#c7795e,color:#3a241f;
+  classDef ext fill:#f5f5f5,stroke:#8a8a8a,color:#222;
+  classDef guard fill:#fff8cc,stroke:#c7ad3d,color:#3a3210;
+
+  class U,AuthGate,AuthPage user;
+  class UIHub,HomePage,CareerPage,ResumePage,RiskPage,EvaluatePage,TrackerPage,InterviewPage,AnalyticsPage,InsightsPage,ReportsPage,AssistantPage,SettingsPage ui;
+  class APIHub,AuthApi,EvalApi,RiskApi,ResumeApi,TrackerApi,CareerApi,AnalyticsApi,InterviewApi,AgentApi,ReportsApi,InsightsApi,DataApi api;
+  class EvalEngine,RiskEngine,RiskQuality,ResumeEngine,TrackerService,CareerService,AnalyticsService,InterviewEngine,InsightsEngine,ExportService engine;
+  class AgentRun,AgentRouter,AgentDefs,ToolRegistry,QueryTools,ActionTools,AgentSessions,ActionConfirm agent;
+  class DBCore,AuthTables,CoreTables,TrackerTables,AgentTables,InterviewTables,QualityTables data;
+  class DeepSeek,WebSearch,JdFetch,Presets ext;
+  class LocalFirst,ProtectedAccess,QueryReadonly,ProposalOnly,NoPlatformOps,SourceBoundary guard;
+```
+
+## 读图说明
+
+- 主用户路径：浏览器进入受保护页面，页面组件通过 `fetch`、`apiRequest` 或 SSE 调用 `src/app/api` 下的路由。
+- 主数据路径：所有本地业务数据统一经 `src/lib/server-db.ts` 进入 `data/new-era.db`，SQLite 使用 WAL 与幂等迁移。
+- 核心差异化：`/risks` 和评估报告复用同一套真/假 AI 岗识别能力，包含规则证据、benchmark、反馈与 HR 核实问题。
+- Agent 边界：`/assistant` 走 `/api/agent/run` 的服务端 SSE ReAct Loop；Query Tools 只能读取本地上下文，Action Tools 只能创建待确认动作。
+- 外部依赖：DeepSeek、公开网页搜索、JD URL 抓取都是受控增强能力，不改变 local-first 边界；不可用时走受控 fallback 或明确错误。
+
+## 安全边界
+
+- 不接招聘平台账号授权。
+- 不自动投递。
+- 不自动联系 HR、发邮件或站内信。
+- 不让 LLM 或工具直接写业务表。
+- Demo、fallback、benchmark 数据必须标明来源和限制。

@@ -1,0 +1,463 @@
+{
+  "dataset": {
+    "id": "sample-resumes",
+    "name": "示例简历演示数据",
+    "version": "phase-3.4",
+    "lastUpdated": "2026-05-29",
+    "dataNotice": "竞赛 Demo 仿真数据",
+    "sourcePolicy": "本文件所有候选人、联系方式、教育经历、公司、项目和指标均为仿真内容，不对应真实个人，不应作为真实招聘、背调或薪酬判断依据。",
+    "intendedUsage": [
+      "简历文本粘贴解析 Demo",
+      "AI 生态位画像 Demo",
+      "简历与 JD 匹配 Demo",
+      "离线降级 fixture"
+    ],
+    "ecosystemDirections": [
+      "LLM应用层",
+      "AI Infra",
+      "算法研究",
+      "具身智能",
+      "AI安全"
+    ]
+  },
+  "items": [
+    {
+      "id": "sample-resume-llm-rag-agent",
+      "dataNotice": "竞赛 Demo 仿真数据，不对应真实个人。",
+      "name": "陈瑶（Demo 候选人）",
+      "targetDirection": "LLM应用层",
+      "yearsOfExperience": 4,
+      "rawText": "陈瑶（Demo 候选人）\n求职方向：大模型应用开发工程师 / RAG 工程师 / Agent 应用工程师\n工作年限：4 年\n所在城市：上海（Demo）\n联系方式：demo.chenyao@example.com\n\n个人简介\n4 年后端与 AI 应用工程经验，其中近 2 年专注企业知识库、RAG 检索增强、Agent 工具调用和模型评测闭环。熟悉 Python、TypeScript、FastAPI、LangChain、LlamaIndex、Milvus、pgvector、Redis、OpenAI-compatible API、RAGAS、LangSmith。能独立完成从需求拆解、文档解析、向量索引、检索召回、提示词编排、工具调用到上线观测的完整链路。\n\n核心技能\n- 编程语言：Python、TypeScript、SQL\n- LLM 应用：RAG、Agent、Function Calling、Prompt Engineering、多轮对话状态管理、结构化输出\n- 应用框架：LangChain、LlamaIndex、FastAPI、Next.js 基础\n- 数据与检索：Milvus、pgvector、Elasticsearch、Redis、BM25、Embedding、rerank\n- 评测与观测：RAGAS、LangSmith、OpenTelemetry、A/B 实验、人工反馈闭环\n\n工作经历\n远澜智能科技（Demo）｜大模型应用工程师｜2024.03 - 2026.05\n- 负责企业知识库 RAG 平台从 0 到 1 建设，支持多租户权限过滤、文档解析、混合检索、答案引用和反馈闭环。\n- 与产品、算法和业务团队共同定义召回率、引用准确率、幻觉率、响应延迟和人工采纳率等上线指标。\n- 将模型 API、向量检索、rerank、Prompt 模板和业务系统权限封装为可复用服务，支撑客服、售前和内部知识库 3 个场景。\n\n云舟协同办公（Demo）｜后端工程师｜2022.07 - 2024.02\n- 负责多租户任务流、权限系统、数据同步和日志追踪服务，使用 TypeScript、Node.js、PostgreSQL、Redis、Docker。\n- 参与早期智能助手插件开发，完成模型 API 接入、FAQ 检索和管理员配置后台。\n\n项目经历\n项目一：企业知识库 RAG 平台｜技术负责人\n技术栈：Python、FastAPI、LangChain、Milvus、pgvector、RAGAS、OpenTelemetry\n项目描述：为 6 个业务部门建设可配置知识库平台，支持 PDF/Markdown/网页文档解析、切分策略配置、向量检索、关键词召回、rerank、答案引用和低置信度转人工。\n量化结果：仿真指标显示，Top-3 召回率从 61% 提升至 83%，平均响应延迟从 4.6 秒降至 2.4 秒，客服人工检索时间减少 38%。\n\n项目二：售前 Agent 工具调用系统｜核心开发\n技术栈：LangChain Agent、Function Calling、TypeScript、PostgreSQL、CRM API\n项目描述：将产品资料查询、报价规则校验、CRM 客户信息更新封装为工具调用，支持任务规划、失败重试、人工确认和执行日志追踪。\n量化结果：仿真指标显示，售前资料整理时间减少 35%，工具调用成功率稳定在 93%。\n\n项目三：RAG 质量评测流水线｜评测负责人\n技术栈：RAGAS、Python、LangSmith、Evaluation Dataset、Prompt 模板\n项目描述：构建 500 条仿真问答评测集，覆盖事实一致性、引用准确性、拒答、敏感内容和长文档问答，支持上线前自动回归。\n量化结果：上线前拦截 18% 的低质量检索配置变更，并沉淀 12 类常见失败样例。\n\n教育背景\n华东地区某高校（Demo）｜软件工程｜本科｜2018.09 - 2022.06",
+      "expectedParsedProfile": {
+        "name": "陈瑶（Demo 候选人）",
+        "currentRole": "大模型应用工程师",
+        "targetDirection": "LLM应用层",
+        "yearsOfExperience": 4,
+        "location": "上海（Demo）",
+        "education": [
+          {
+            "school": "华东地区某高校（Demo）",
+            "degree": "本科",
+            "major": "软件工程",
+            "period": "2018.09 - 2022.06"
+          }
+        ],
+        "workExperience": [
+          {
+            "company": "远澜智能科技（Demo）",
+            "role": "大模型应用工程师",
+            "period": "2024.03 - 2026.05",
+            "focus": "企业知识库、RAG、Agent、模型评测"
+          },
+          {
+            "company": "云舟协同办公（Demo）",
+            "role": "后端工程师",
+            "period": "2022.07 - 2024.02",
+            "focus": "多租户后端、权限、数据同步、早期智能助手"
+          }
+        ],
+        "summary": "后端工程背景，近两年集中在企业级 RAG、Agent 工具调用和评测观测闭环，适合 LLM 应用开发、RAG 工程师和 AI 产品工程协作岗位。",
+        "preferredRoles": [
+          "大模型应用开发工程师",
+          "RAG 工程师",
+          "Agent 应用工程师",
+          "AI 产品型工程师"
+        ]
+      },
+      "expectedSkills": [
+        {
+          "name": "Python",
+          "category": "编程语言",
+          "level": "熟练",
+          "evidence": "主导 RAG 服务、评测脚本和数据处理流水线。"
+        },
+        {
+          "name": "TypeScript",
+          "category": "编程语言",
+          "level": "熟练",
+          "evidence": "参与 Agent 工具调用配置后台和协同办公后端服务。"
+        },
+        {
+          "name": "LangChain",
+          "category": "应用框架",
+          "level": "精通",
+          "evidence": "用于 RAG 链路、Agent 工具调用、结构化输出和重试机制。"
+        },
+        {
+          "name": "LlamaIndex",
+          "category": "应用框架",
+          "level": "熟练",
+          "evidence": "用于文档解析、索引策略和检索实验。"
+        },
+        {
+          "name": "Milvus",
+          "category": "基础设施",
+          "level": "熟练",
+          "evidence": "设计多租户向量索引、混合检索和权限过滤方案。"
+        },
+        {
+          "name": "pgvector",
+          "category": "基础设施",
+          "level": "熟练",
+          "evidence": "用于中小规模知识库检索和业务数据融合。"
+        },
+        {
+          "name": "RAGAS",
+          "category": "评估与监控",
+          "level": "熟练",
+          "evidence": "建设 RAG 质量评测流水线和上线前回归检查。"
+        },
+        {
+          "name": "LangSmith",
+          "category": "评估与监控",
+          "level": "入门",
+          "evidence": "用于 Prompt 版本、调用链追踪和失败样例分析。"
+        },
+        {
+          "name": "Prompt Engineering",
+          "category": "领域能力",
+          "level": "熟练",
+          "evidence": "沉淀客服、售前和内部知识库提示词模板。"
+        },
+        {
+          "name": "Agent / Function Calling",
+          "category": "领域能力",
+          "level": "熟练",
+          "evidence": "实现工具调用、失败重试、人工确认和执行日志追踪。"
+        }
+      ],
+      "expectedProjects": [
+        {
+          "name": "企业知识库 RAG 平台",
+          "role": "技术负责人",
+          "domain": "LLM应用层",
+          "techStack": [
+            "Python",
+            "FastAPI",
+            "LangChain",
+            "Milvus",
+            "pgvector",
+            "RAGAS",
+            "OpenTelemetry"
+          ],
+          "impact": "Top-3 召回率从 61% 提升至 83%，平均响应延迟从 4.6 秒降至 2.4 秒，客服人工检索时间减少 38%。",
+          "matchKeywords": [
+            "RAG",
+            "混合检索",
+            "向量数据库",
+            "答案引用",
+            "模型评测"
+          ]
+        },
+        {
+          "name": "售前 Agent 工具调用系统",
+          "role": "核心开发",
+          "domain": "LLM应用层",
+          "techStack": [
+            "LangChain Agent",
+            "Function Calling",
+            "TypeScript",
+            "PostgreSQL",
+            "CRM API"
+          ],
+          "impact": "售前资料整理时间减少 35%，工具调用成功率稳定在 93%。",
+          "matchKeywords": [
+            "Agent",
+            "Function Calling",
+            "工具调用",
+            "任务规划",
+            "失败重试"
+          ]
+        },
+        {
+          "name": "RAG 质量评测流水线",
+          "role": "评测负责人",
+          "domain": "AI安全",
+          "techStack": [
+            "RAGAS",
+            "Python",
+            "LangSmith",
+            "Evaluation Dataset",
+            "Prompt 模板"
+          ],
+          "impact": "上线前拦截 18% 的低质量检索配置变更，沉淀 12 类常见失败样例。",
+          "matchKeywords": [
+            "评测集",
+            "事实一致性",
+            "引用准确性",
+            "拒答",
+            "敏感内容"
+          ]
+        }
+      ],
+      "expectedEcosystemPosition": {
+        "LLM应用层": 0.86,
+        "AI Infra": 0.34,
+        "算法研究": 0.22,
+        "具身智能": 0.02,
+        "AI安全": 0.18
+      },
+      "expectedStrengths": [
+        {
+          "title": "LLM 应用方向清晰",
+          "detail": "RAG、Agent、Prompt、评测和上线观测链路完整，适合匹配大模型应用开发或 RAG 平台岗位。"
+        },
+        {
+          "title": "工程落地证据充分",
+          "detail": "项目包含召回率、延迟、工具调用成功率和人工检索时间等量化指标。"
+        },
+        {
+          "title": "具备业务系统集成经验",
+          "detail": "有权限过滤、CRM API、人工确认和多租户场景经验，便于匹配企业级 AI 应用岗位。"
+        }
+      ],
+      "expectedGaps": [
+        {
+          "title": "模型服务和推理优化深度不足",
+          "impactOnMatching": "投递 AI Infra、vLLM、Triton 或 GPU 推理平台岗位时匹配度会下降。",
+          "suggestion": "补充一个 vLLM 部署、模型路由、吞吐和延迟对比的小型项目。"
+        },
+        {
+          "title": "算法训练经验较少",
+          "impactOnMatching": "投递算法研究、SFT、LoRA、DPO 相关岗位时只能体现应用和评测经验。",
+          "suggestion": "如果目标转向算法岗，可补充 HuggingFace Transformers 微调实验和数据清洗案例。"
+        },
+        {
+          "title": "AI 安全表达偏评测而非攻防",
+          "impactOnMatching": "匹配 AI 安全研究岗时缺少红队、对抗样本、越狱测试和对齐经验。",
+          "suggestion": "将现有拒答和敏感内容评测扩展成安全用例库，但不要包装为深度安全研究。"
+        }
+      ]
+    },
+    {
+      "id": "sample-resume-ai-infra-serving-mlops",
+      "dataNotice": "竞赛 Demo 仿真数据，不对应真实个人。",
+      "name": "赵奕安（Demo 候选人）",
+      "targetDirection": "AI Infra",
+      "yearsOfExperience": 6,
+      "rawText": "赵奕安（Demo 候选人）\n求职方向：AI Infra 工程师 / 大模型推理平台工程师 / MLOps 平台工程师\n工作年限：6 年\n所在城市：北京（Demo）\n联系方式：demo.zhaoyian@example.com\n\n个人简介\n6 年后端与平台工程经验，其中近 3 年负责模型服务平台、GPU 推理集群、模型发布流水线和 MLOps 可观测体系。熟悉 Python、Go、Linux、Kubernetes、Docker、Helm、vLLM、Triton Inference Server、TensorRT-LLM、ONNX Runtime、Prometheus、Grafana、MLflow、Ray。理解 Transformer 推理流程、KV Cache、continuous batching、模型量化、灰度发布、限流熔断和多租户隔离。\n\n核心技能\n- 编程语言：Python、Go、Shell、SQL\n- 模型服务：vLLM、Triton Inference Server、TensorRT-LLM、ONNX Runtime、TGI、OpenAI-compatible API\n- 云原生与平台：Kubernetes、Docker、Helm、Istio 基础、NVIDIA GPU Operator、Prometheus、Grafana\n- MLOps：MLflow、模型注册、模型发布、灰度回滚、特征与数据版本管理、离线评测集成\n- 推理优化：KV Cache、continuous batching、量化、并发调度、GPU 利用率分析、P95/P99 延迟治理\n\n工作经历\n矩阵云原生智能（Demo）｜AI Infra 工程师｜2023.02 - 2026.05\n- 建设统一大模型推理平台，接入 Qwen、Llama、DeepSeek 系列模型，提供 OpenAI-compatible API、鉴权、限流、路由和审计日志。\n- 维护 Kubernetes GPU 集群，负责模型服务发布、灰度、回滚、监控告警和成本看板。\n- 对 vLLM 和 Triton 服务进行压测与参数调优，跟踪吞吐、首 token 延迟、P95 延迟和 GPU 利用率。\n\n北辰数据平台（Demo）｜平台后端工程师｜2020.07 - 2023.01\n- 负责任务调度、数据处理流水线和内部机器学习训练平台的后端服务，使用 Go、Python、Kubernetes、Ray、PostgreSQL、Redis。\n- 建设模型注册、实验记录和批量预测任务管理能力，为算法团队提供训练到上线的基础工具。\n\n项目经历\n项目一：统一大模型推理平台｜核心负责人\n技术栈：Kubernetes、vLLM、Triton Inference Server、TensorRT-LLM、Go、Python、Prometheus、Grafana\n项目描述：建设多模型、多租户推理服务平台，支持模型注册、实例伸缩、路由策略、API 鉴权、限流、灰度发布和回滚。为业务团队屏蔽底层 GPU 集群和模型运行时差异。\n量化结果：仿真指标显示，平台承载 14 个模型服务，平均 GPU 利用率从 38% 提升至 61%，P95 延迟下降 32%，单次发布回滚时间从 40 分钟缩短到 8 分钟。\n\n项目二：推理服务压测与成本优化｜性能优化负责人\n技术栈：vLLM、TGI、Locust、NVIDIA DCGM、Prometheus、Grafana、Python\n项目描述：建立标准压测场景，覆盖短问答、长上下文、多轮对话和批量摘要；分析 KV Cache、batch size、max tokens、并发数和显存占用对吞吐和延迟的影响。\n量化结果：仿真指标显示，在不降低回答质量的前提下，单卡吞吐提升 46%，高峰期推理成本下降 24%。\n\n项目三：MLOps 模型发布流水线｜平台开发\n技术栈：MLflow、Ray、Kubernetes Job、Docker、Helm、PostgreSQL\n项目描述：打通模型注册、离线评测、镜像构建、灰度部署和线上监控，支持算法团队将推荐、分类和文本模型发布到生产环境。\n量化结果：模型上线周期从平均 5 天缩短到 1.5 天，发布失败后的自动回滚覆盖率达到 90%。\n\n教育背景\n华北地区某高校（Demo）｜计算机科学与技术｜本科｜2016.09 - 2020.06",
+      "expectedParsedProfile": {
+        "name": "赵奕安（Demo 候选人）",
+        "currentRole": "AI Infra 工程师",
+        "targetDirection": "AI Infra",
+        "yearsOfExperience": 6,
+        "location": "北京（Demo）",
+        "education": [
+          {
+            "school": "华北地区某高校（Demo）",
+            "degree": "本科",
+            "major": "计算机科学与技术",
+            "period": "2016.09 - 2020.06"
+          }
+        ],
+        "workExperience": [
+          {
+            "company": "矩阵云原生智能（Demo）",
+            "role": "AI Infra 工程师",
+            "period": "2023.02 - 2026.05",
+            "focus": "大模型推理平台、GPU 集群、模型服务治理"
+          },
+          {
+            "company": "北辰数据平台（Demo）",
+            "role": "平台后端工程师",
+            "period": "2020.07 - 2023.01",
+            "focus": "任务调度、训练平台、模型注册和批量预测"
+          }
+        ],
+        "summary": "云原生平台工程背景，近三年聚焦模型 serving、GPU 推理集群、MLOps 发布流水线和线上可观测，适合 AI Infra、模型服务平台和 MLOps 岗位。",
+        "preferredRoles": [
+          "AI Infra 工程师",
+          "大模型推理平台工程师",
+          "MLOps 平台工程师",
+          "模型服务工程师"
+        ]
+      },
+      "expectedSkills": [
+        {
+          "name": "Python",
+          "category": "编程语言",
+          "level": "熟练",
+          "evidence": "用于推理服务脚本、压测分析、MLOps 流水线和平台自动化。"
+        },
+        {
+          "name": "Go",
+          "category": "编程语言",
+          "level": "熟练",
+          "evidence": "开发模型服务网关、发布控制面和平台后端。"
+        },
+        {
+          "name": "Kubernetes",
+          "category": "基础设施",
+          "level": "精通",
+          "evidence": "维护 GPU 集群、模型服务发布、伸缩、灰度和回滚。"
+        },
+        {
+          "name": "vLLM",
+          "category": "模型服务",
+          "level": "熟练",
+          "evidence": "接入多模型推理服务并调优吞吐、首 token 延迟和 GPU 利用率。"
+        },
+        {
+          "name": "Triton Inference Server",
+          "category": "模型服务",
+          "level": "熟练",
+          "evidence": "用于多模型推理运行时接入和服务治理。"
+        },
+        {
+          "name": "TensorRT-LLM",
+          "category": "模型服务",
+          "level": "入门",
+          "evidence": "参与模型量化和推理优化实验。"
+        },
+        {
+          "name": "Prometheus / Grafana",
+          "category": "评估与监控",
+          "level": "熟练",
+          "evidence": "建设 GPU 利用率、P95/P99 延迟、错误率和成本看板。"
+        },
+        {
+          "name": "MLflow",
+          "category": "MLOps",
+          "level": "熟练",
+          "evidence": "用于模型注册、实验记录和模型发布流水线。"
+        },
+        {
+          "name": "Ray",
+          "category": "基础设施",
+          "level": "熟练",
+          "evidence": "参与训练平台和批量预测任务调度。"
+        },
+        {
+          "name": "CUDA / NVIDIA GPU 基础",
+          "category": "基础设施",
+          "level": "入门",
+          "evidence": "能定位显存、利用率、DCGM 指标和推理服务资源问题。"
+        }
+      ],
+      "expectedProjects": [
+        {
+          "name": "统一大模型推理平台",
+          "role": "核心负责人",
+          "domain": "AI Infra",
+          "techStack": [
+            "Kubernetes",
+            "vLLM",
+            "Triton Inference Server",
+            "TensorRT-LLM",
+            "Go",
+            "Python",
+            "Prometheus",
+            "Grafana"
+          ],
+          "impact": "承载 14 个模型服务，平均 GPU 利用率从 38% 提升至 61%，P95 延迟下降 32%，发布回滚时间从 40 分钟缩短到 8 分钟。",
+          "matchKeywords": [
+            "模型 serving",
+            "GPU 集群",
+            "多租户",
+            "灰度发布",
+            "可观测性"
+          ]
+        },
+        {
+          "name": "推理服务压测与成本优化",
+          "role": "性能优化负责人",
+          "domain": "AI Infra",
+          "techStack": [
+            "vLLM",
+            "TGI",
+            "Locust",
+            "NVIDIA DCGM",
+            "Prometheus",
+            "Grafana",
+            "Python"
+          ],
+          "impact": "单卡吞吐提升 46%，高峰期推理成本下降 24%。",
+          "matchKeywords": [
+            "KV Cache",
+            "continuous batching",
+            "吞吐",
+            "P95 延迟",
+            "推理成本"
+          ]
+        },
+        {
+          "name": "MLOps 模型发布流水线",
+          "role": "平台开发",
+          "domain": "AI Infra",
+          "techStack": [
+            "MLflow",
+            "Ray",
+            "Kubernetes Job",
+            "Docker",
+            "Helm",
+            "PostgreSQL"
+          ],
+          "impact": "模型上线周期从平均 5 天缩短到 1.5 天，发布失败后的自动回滚覆盖率达到 90%。",
+          "matchKeywords": [
+            "模型注册",
+            "离线评测",
+            "镜像构建",
+            "灰度部署",
+            "自动回滚"
+          ]
+        }
+      ],
+      "expectedEcosystemPosition": {
+        "LLM应用层": 0.18,
+        "AI Infra": 0.82,
+        "算法研究": 0.28,
+        "具身智能": 0.02,
+        "AI安全": 0.1
+      },
+      "expectedStrengths": [
+        {
+          "title": "AI Infra 方向高度聚焦",
+          "detail": "模型 serving、GPU 集群、Kubernetes、vLLM、Triton、MLOps 和可观测性证据集中。"
+        },
+        {
+          "title": "平台工程和线上稳定性经验完整",
+          "detail": "覆盖鉴权、限流、路由、灰度、回滚、告警和成本看板，适合高并发模型服务岗位。"
+        },
+        {
+          "title": "推理性能指标可用于 JD 匹配",
+          "detail": "简历包含 GPU 利用率、P95 延迟、吞吐、成本和发布周期等可量化结果。"
+        }
+      ],
+      "expectedGaps": [
+        {
+          "title": "LLM 应用层业务项目较少",
+          "impactOnMatching": "投递 RAG、Agent 或 AI 应用开发岗位时，业务对话链路和 Prompt 设计经验不足。",
+          "suggestion": "补一个基于现有推理平台的 RAG Demo，展示模型服务如何支撑上层应用。"
+        },
+        {
+          "title": "算法研究深度有限",
+          "impactOnMatching": "投递 SFT、RLHF、DPO 或论文研究岗时，训练实验和论文产出证据不足。",
+          "suggestion": "如目标转算法岗，应补充 PyTorch/Transformers 微调、数据清洗和消融实验。"
+        },
+        {
+          "title": "CUDA 内核级优化不是主线",
+          "impactOnMatching": "匹配需要自研算子、CUDA kernel 或底层编译优化的岗位时竞争力较弱。",
+          "suggestion": "将定位保持在模型服务平台和推理系统工程，不要夸大底层 CUDA 开发能力。"
+        }
+      ]
+    }
+  ],
+  "demoNotes": {
+    "defaultResumeId": "sample-resume-llm-rag-agent",
+    "recommendedJdPairings": [
+      {
+        "resumeId": "sample-resume-llm-rag-agent",
+        "highMatchJdId": "real-llm-rag-agent-engineer",
+        "lowMatchJdId": "real-ai-infra-serving-engineer",
+        "demoPoint": "同一份简历对 LLM 应用岗高匹配，对 AI Infra 岗会出现推理服务和 GPU 经验缺口。"
+      },
+      {
+        "resumeId": "sample-resume-ai-infra-serving-mlops",
+        "highMatchJdId": "real-ai-infra-serving-engineer",
+        "mediumMatchJdId": "real-algorithm-finetuning-researcher",
+        "demoPoint": "AI Infra 简历对模型 serving 岗高匹配，对算法研究岗只覆盖工程和评测平台部分。"
+      }
+    ],
+    "privacyNotice": "rawText 中的姓名、学校、公司、邮箱和项目指标均为 Demo 仿真内容。"
+  }
+}

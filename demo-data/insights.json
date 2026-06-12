@@ -1,0 +1,823 @@
+{
+  "dataset": {
+    "id": "industry-insights-demo",
+    "name": "行业洞察页预置数据",
+    "version": "phase-3.3",
+    "snapshotPeriod": "2026 Q1",
+    "snapshotDate": "2026-05-29",
+    "timezone": "Asia/Shanghai",
+    "dataNature": "competition_demo_estimate",
+    "isCompetitionDemoEstimate": true,
+    "numberPolicy": "所有岗位数、占比、薪资、热度、增长率、公司招聘数量均为竞赛 Demo 估算或公开资料综合，不是实时抓取数据。",
+    "offlineReady": true
+  },
+  "apiContract": {
+    "intendedRoute": "/api/insights/trends",
+    "returnShape": "可作为 /api/insights/trends 的 JSON 响应根对象直接返回。",
+    "primarySections": [
+      "overviewMetrics",
+      "techTrends",
+      "trendTags",
+      "domainDistribution",
+      "salaryBenchmarks",
+      "recommendedCompanies",
+      "weeklyBrief",
+      "dataSources"
+    ]
+  },
+  "overviewMetrics": [
+    {
+      "id": "ai-job-sample-volume-2026q1",
+      "label": "2026 Q1 AI 岗位样本",
+      "value": "1,260+",
+      "numericValue": 1260,
+      "unit": "个",
+      "period": "2026 Q1",
+      "description": "一线与新一线城市 AI 相关岗位的 Demo 样本规模。",
+      "comparisonLabel": "较 2025 Q4 +23%",
+      "trend": "up",
+      "tone": "primary",
+      "progress": 82,
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "hottest-ai-domain-2026q1",
+      "label": "热门方向",
+      "value": "LLM 应用层",
+      "numericValue": 42,
+      "unit": "%",
+      "period": "2026 Q1",
+      "description": "Agent、RAG 与企业知识库落地需求最集中。",
+      "comparisonLabel": "样本占比 42%",
+      "trend": "up",
+      "tone": "blue",
+      "progress": 42,
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "avg-salary-3to5-2026q1",
+      "label": "3-5 年平均薪资",
+      "value": "32K/月",
+      "numericValue": 32,
+      "unit": "K/月",
+      "period": "2026 Q1",
+      "description": "AI 应用与平台工程岗位 3-5 年经验段薪资中位参考。",
+      "comparisonLabel": "较传统软件岗 +28%",
+      "trend": "up",
+      "tone": "green",
+      "progress": 68,
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "competition-index-2026q1",
+      "label": "竞争指数",
+      "value": "中等偏高",
+      "numericValue": 74,
+      "unit": "指数",
+      "period": "2026 Q1",
+      "description": "初级岗位竞争更高，中高级工程化经验仍稀缺。",
+      "comparisonLabel": "供需偏紧",
+      "trend": "flat",
+      "tone": "neutral",
+      "progress": 74,
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    }
+  ],
+  "techTrends": [
+    {
+      "id": "agent-development",
+      "rank": 1,
+      "name": "Agent 开发",
+      "period": "2026 Q1",
+      "heatScore": 96,
+      "demandSharePercent": 28,
+      "growthPercentEstimate": 38,
+      "trend": "up",
+      "trendLabel": "上升",
+      "displayChange": "↑↑↑",
+      "aliases": [
+        "Tool Calling",
+        "多工具编排",
+        "任务规划"
+      ],
+      "relatedSkills": [
+        "Function Calling",
+        "MCP",
+        "LangGraph",
+        "AutoGen"
+      ],
+      "note": "企业流程自动化推动 Agent Runtime、工具调用、权限控制和失败回放经验升温。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "rag",
+      "rank": 2,
+      "name": "RAG",
+      "period": "2026 Q1",
+      "heatScore": 90,
+      "demandSharePercent": 22,
+      "growthPercentEstimate": 26,
+      "trend": "up",
+      "trendLabel": "上升",
+      "displayChange": "↑↑",
+      "aliases": [
+        "检索增强生成",
+        "企业知识库"
+      ],
+      "relatedSkills": [
+        "LlamaIndex",
+        "RAGAS",
+        "Milvus",
+        "pgvector"
+      ],
+      "note": "企业知识库从 PoC 转向生产化，召回质量、权限隔离、评测集和成本治理成为面试重点。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "langchain-langgraph",
+      "rank": 3,
+      "name": "LangChain / LangGraph",
+      "period": "2026 Q1",
+      "heatScore": 84,
+      "demandSharePercent": 18,
+      "growthPercentEstimate": 18,
+      "trend": "up",
+      "trendLabel": "上升",
+      "displayChange": "↑",
+      "aliases": [
+        "LangChain",
+        "LangGraph"
+      ],
+      "relatedSkills": [
+        "Tracing",
+        "Evaluation",
+        "Tool Calling",
+        "Prompt 管理"
+      ],
+      "note": "招聘方更关注框架是否能落到稳定业务流程，而不是只会写演示样例。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "model-fine-tuning",
+      "rank": 4,
+      "name": "大模型微调",
+      "period": "2026 Q1",
+      "heatScore": 76,
+      "demandSharePercent": 15,
+      "growthPercentEstimate": 22,
+      "trend": "up",
+      "trendLabel": "上升",
+      "displayChange": "↑↑",
+      "aliases": [
+        "SFT",
+        "LoRA",
+        "DPO"
+      ],
+      "relatedSkills": [
+        "Transformers",
+        "PEFT",
+        "RLHF",
+        "模型评测"
+      ],
+      "note": "垂直行业模型优化需求稳定，数据质量、评测和训练成本是核心关注点。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "vector-database",
+      "rank": 5,
+      "name": "向量数据库",
+      "period": "2026 Q1",
+      "heatScore": 70,
+      "demandSharePercent": 10,
+      "growthPercentEstimate": 4,
+      "trend": "flat",
+      "trendLabel": "持平",
+      "displayChange": "→",
+      "aliases": [
+        "Milvus",
+        "pgvector",
+        "FAISS"
+      ],
+      "relatedSkills": [
+        "Hybrid Search",
+        "Embedding",
+        "Rerank",
+        "权限治理"
+      ],
+      "note": "岗位要求从单纯搭库转向索引策略、召回质量、权限隔离和可观测性。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "mcp-protocol",
+      "rank": 6,
+      "name": "MCP 协议",
+      "period": "2026 Q1",
+      "heatScore": 64,
+      "demandSharePercent": 7,
+      "growthPercentEstimate": 52,
+      "trend": "new",
+      "trendLabel": "新出现",
+      "displayChange": "↑↑↑ 新",
+      "aliases": [
+        "Model Context Protocol",
+        "工具生态接入"
+      ],
+      "relatedSkills": [
+        "Tool Server",
+        "权限边界",
+        "上下文工程",
+        "企业系统集成"
+      ],
+      "note": "Agent 工具生态和企业系统集成推动 MCP 相关能力进入 JD 关键词。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    }
+  ],
+  "trendTags": [
+    {
+      "name": "Agent",
+      "heatScore": 96,
+      "trend": "up",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "name": "RAG",
+      "heatScore": 90,
+      "trend": "up",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "name": "LangChain",
+      "heatScore": 84,
+      "trend": "up",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "name": "PyTorch",
+      "heatScore": 78,
+      "trend": "flat",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "name": "向量数据库",
+      "heatScore": 70,
+      "trend": "flat",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "name": "Prompt Engineering",
+      "heatScore": 68,
+      "trend": "flat",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "name": "LoRA",
+      "heatScore": 66,
+      "trend": "up",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "name": "MCP",
+      "heatScore": 64,
+      "trend": "new",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "name": "多模态",
+      "heatScore": 62,
+      "trend": "up",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "name": "Function Calling",
+      "heatScore": 60,
+      "trend": "up",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "name": "AI SDK",
+      "heatScore": 55,
+      "trend": "new",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "name": "RLHF",
+      "heatScore": 52,
+      "trend": "flat",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    }
+  ],
+  "domainDistribution": [
+    {
+      "id": "llm_application",
+      "label": "LLM 应用层",
+      "percent": 42,
+      "period": "2026 Q1",
+      "color": "#c4873a",
+      "detail": "企业知识库、Agent、智能客服和流程自动化需求最集中。",
+      "representativeCompanies": [
+        "DeepSeek",
+        "智谱 AI",
+        "MiniMax",
+        "月之暗面"
+      ],
+      "typicalRoles": [
+        "大模型应用开发工程师",
+        "AI 产品经理",
+        "Agent 工程师",
+        "RAG 平台工程师"
+      ],
+      "entryBarrier": "需要能把模型能力、数据权限、工程交付和业务指标连接起来。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "ai_infra",
+      "label": "AI Infra",
+      "percent": 28,
+      "period": "2026 Q1",
+      "color": "#5b7f9e",
+      "detail": "推理服务、训练平台、向量检索和 MLOps 仍是高薪技术底座。",
+      "representativeCompanies": [
+        "阿里云",
+        "火山引擎",
+        "腾讯云",
+        "百度智能云"
+      ],
+      "typicalRoles": [
+        "推理优化工程师",
+        "MLOps 工程师",
+        "向量数据库工程师",
+        "AI 平台后端工程师"
+      ],
+      "entryBarrier": "通常要求分布式系统、GPU 推理部署、监控和稳定性经验。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "algorithm_research",
+      "label": "算法研究",
+      "percent": 18,
+      "period": "2026 Q1",
+      "color": "#8c6f4a",
+      "detail": "基础模型、微调、评测和数据质量岗位需求稳定但门槛较高。",
+      "representativeCompanies": [
+        "百川智能",
+        "阶跃星辰",
+        "商汤科技",
+        "面壁智能"
+      ],
+      "typicalRoles": [
+        "NLP 算法工程师",
+        "模型评测工程师",
+        "多模态算法工程师",
+        "训练数据工程师"
+      ],
+      "entryBarrier": "通常要求扎实算法、论文复现、模型训练或高质量数据闭环能力。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "embodied_ai",
+      "label": "具身智能",
+      "percent": 12,
+      "period": "2026 Q1",
+      "color": "#617e54",
+      "detail": "机器人、自动驾驶和工业智能方向升温，但岗位更集中在少数团队。",
+      "representativeCompanies": [
+        "宇树科技",
+        "银河通用",
+        "小鹏机器人",
+        "傅利叶智能"
+      ],
+      "typicalRoles": [
+        "机器人算法工程师",
+        "多模态感知工程师",
+        "强化学习工程师",
+        "仿真平台工程师"
+      ],
+      "entryBarrier": "需要算法、控制、硬件协同和仿真系统经验。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "ai_safety",
+      "label": "AI 安全",
+      "percent": 8,
+      "period": "2026 Q1",
+      "color": "#a3554d",
+      "detail": "内容安全、红队评测、权限治理和合规评估成为生产化应用的必备能力。",
+      "representativeCompanies": [
+        "字节跳动",
+        "腾讯 AI Lab",
+        "蚂蚁集团",
+        "百度安全"
+      ],
+      "typicalRoles": [
+        "AI 安全评测工程师",
+        "模型红队工程师",
+        "内容安全产品经理",
+        "合规策略工程师"
+      ],
+      "entryBarrier": "需要理解安全攻防、模型评测、风控策略和合规边界。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    }
+  ],
+  "salaryBenchmarks": {
+    "period": "2026 Q1",
+    "currency": "CNY",
+    "payPeriod": "monthly",
+    "unitLabel": "K/月",
+    "estimateLabel": "竞赛 Demo 估算 / 公开资料综合",
+    "sourcePolicy": "薪资区间综合公开报告、招聘平台公开 JD 区间和竞赛演示需要整理，仅用于离线展示，不代表实时薪资。",
+    "experienceBands": [
+      {
+        "key": "fresh",
+        "label": "应届"
+      },
+      {
+        "key": "one_to_three",
+        "label": "1-3年"
+      },
+      {
+        "key": "three_to_five",
+        "label": "3-5年"
+      },
+      {
+        "key": "five_plus",
+        "label": "5年+"
+      }
+    ],
+    "rows": [
+      {
+        "domain": "LLM 应用层",
+        "aiEcosystemDomain": "llm_application",
+        "ranges": {
+          "fresh": {
+            "min": 15,
+            "max": 22,
+            "display": "15-22K"
+          },
+          "one_to_three": {
+            "min": 22,
+            "max": 32,
+            "display": "22-32K"
+          },
+          "three_to_five": {
+            "min": 30,
+            "max": 45,
+            "display": "30-45K"
+          },
+          "five_plus": {
+            "min": 40,
+            "max": 60,
+            "display": "40-60K"
+          }
+        },
+        "note": "RAG、Agent 和企业工作流落地经验会显著影响上限。",
+        "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+      },
+      {
+        "domain": "AI Infra",
+        "aiEcosystemDomain": "ai_infra",
+        "ranges": {
+          "fresh": {
+            "min": 18,
+            "max": 25,
+            "display": "18-25K"
+          },
+          "one_to_three": {
+            "min": 25,
+            "max": 38,
+            "display": "25-38K"
+          },
+          "three_to_five": {
+            "min": 35,
+            "max": 55,
+            "display": "35-55K"
+          },
+          "five_plus": {
+            "min": 50,
+            "max": 80,
+            "display": "50-80K"
+          }
+        },
+        "note": "推理优化、分布式训练和稳定性经验带来较高溢价。",
+        "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+      },
+      {
+        "domain": "算法研究",
+        "aiEcosystemDomain": "algorithm_research",
+        "ranges": {
+          "fresh": {
+            "min": 20,
+            "max": 30,
+            "display": "20-30K"
+          },
+          "one_to_three": {
+            "min": 30,
+            "max": 45,
+            "display": "30-45K"
+          },
+          "three_to_five": {
+            "min": 45,
+            "max": 70,
+            "display": "45-70K"
+          },
+          "five_plus": {
+            "min": 60,
+            "max": 100,
+            "display": "60-100K+"
+          }
+        },
+        "note": "模型训练、论文落地和高质量数据闭环是关键差异。",
+        "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+      },
+      {
+        "domain": "具身智能",
+        "aiEcosystemDomain": "embodied_ai",
+        "ranges": {
+          "fresh": {
+            "min": 18,
+            "max": 28,
+            "display": "18-28K"
+          },
+          "one_to_three": {
+            "min": 28,
+            "max": 40,
+            "display": "28-40K"
+          },
+          "three_to_five": {
+            "min": 40,
+            "max": 60,
+            "display": "40-60K"
+          },
+          "five_plus": {
+            "min": 55,
+            "max": 85,
+            "display": "55-85K"
+          }
+        },
+        "note": "机器人、控制、仿真和多模态感知经验决定薪资上限。",
+        "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+      },
+      {
+        "domain": "AI 安全",
+        "aiEcosystemDomain": "ai_safety",
+        "ranges": {
+          "fresh": {
+            "min": 18,
+            "max": 25,
+            "display": "18-25K"
+          },
+          "one_to_three": {
+            "min": 25,
+            "max": 38,
+            "display": "25-38K"
+          },
+          "three_to_five": {
+            "min": 38,
+            "max": 55,
+            "display": "38-55K"
+          },
+          "five_plus": {
+            "min": 50,
+            "max": 75,
+            "display": "50-75K"
+          }
+        },
+        "note": "模型红队、权限治理、内容安全和合规策略能力更稀缺。",
+        "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+      }
+    ]
+  },
+  "recommendedCompanies": [
+    {
+      "id": "deepseek",
+      "name": "DeepSeek 深度求索",
+      "initials": "DS",
+      "headquarters": "杭州",
+      "companyType": "基础模型公司",
+      "focus": "大模型研发与推理效率",
+      "primaryDomains": [
+        "algorithm_research",
+        "ai_infra"
+      ],
+      "estimatedOpenAiRoles": {
+        "min": 6,
+        "max": 12,
+        "display": "6-12 个"
+      },
+      "hiringRoles": [
+        "模型训练工程师",
+        "推理优化工程师",
+        "模型评测工程师"
+      ],
+      "whyWatch": "适合关注基础模型、推理成本和模型评测方向。",
+      "realtimeNotice": "招聘数量为 Demo 估算，不代表 2026-05-29 实时招聘页。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "zhipu-ai",
+      "name": "智谱 AI",
+      "initials": "ZP",
+      "headquarters": "北京",
+      "companyType": "通用大模型公司",
+      "focus": "GLM 生态与企业应用",
+      "primaryDomains": [
+        "llm_application",
+        "algorithm_research"
+      ],
+      "estimatedOpenAiRoles": {
+        "min": 8,
+        "max": 16,
+        "display": "8-16 个"
+      },
+      "hiringRoles": [
+        "大模型应用开发工程师",
+        "多模态算法工程师",
+        "AI 解决方案架构师"
+      ],
+      "whyWatch": "适合关注模型平台、企业落地和应用生态岗位。",
+      "realtimeNotice": "招聘数量为 Demo 估算，不代表 2026-05-29 实时招聘页。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "minimax",
+      "name": "MiniMax",
+      "initials": "MM",
+      "headquarters": "上海",
+      "companyType": "多模态与应用公司",
+      "focus": "多模态模型与 AI 原生应用",
+      "primaryDomains": [
+        "llm_application",
+        "algorithm_research"
+      ],
+      "estimatedOpenAiRoles": {
+        "min": 5,
+        "max": 10,
+        "display": "5-10 个"
+      },
+      "hiringRoles": [
+        "多模态算法工程师",
+        "AI 应用后端工程师",
+        "Prompt 评测工程师"
+      ],
+      "whyWatch": "适合关注多模态、对话产品和模型应用闭环。",
+      "realtimeNotice": "招聘数量为 Demo 估算，不代表 2026-05-29 实时招聘页。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "moonshot-ai",
+      "name": "月之暗面 Moonshot AI",
+      "initials": "MS",
+      "headquarters": "北京",
+      "companyType": "大模型应用公司",
+      "focus": "长上下文模型与 AI 助手",
+      "primaryDomains": [
+        "llm_application",
+        "ai_infra"
+      ],
+      "estimatedOpenAiRoles": {
+        "min": 5,
+        "max": 12,
+        "display": "5-12 个"
+      },
+      "hiringRoles": [
+        "LLM 应用工程师",
+        "搜索增强工程师",
+        "推理平台工程师"
+      ],
+      "whyWatch": "适合关注长上下文、搜索增强和 C 端 AI 产品岗位。",
+      "realtimeNotice": "招聘数量为 Demo 估算，不代表 2026-05-29 实时招聘页。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "stepfun",
+      "name": "阶跃星辰",
+      "initials": "JY",
+      "headquarters": "上海",
+      "companyType": "基础模型公司",
+      "focus": "多模态基础模型",
+      "primaryDomains": [
+        "algorithm_research",
+        "llm_application"
+      ],
+      "estimatedOpenAiRoles": {
+        "min": 4,
+        "max": 9,
+        "display": "4-9 个"
+      },
+      "hiringRoles": [
+        "多模态算法工程师",
+        "模型数据工程师",
+        "模型评测工程师"
+      ],
+      "whyWatch": "适合关注多模态基础模型与数据闭环岗位。",
+      "realtimeNotice": "招聘数量为 Demo 估算，不代表 2026-05-29 实时招聘页。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    },
+    {
+      "id": "bytedance-ai",
+      "name": "字节跳动 AI",
+      "initials": "BD",
+      "headquarters": "北京",
+      "companyType": "互联网平台 AI 团队",
+      "focus": "AI 应用、内容理解与安全治理",
+      "primaryDomains": [
+        "llm_application",
+        "ai_safety",
+        "ai_infra"
+      ],
+      "estimatedOpenAiRoles": {
+        "min": 15,
+        "max": 30,
+        "display": "15-30 个"
+      },
+      "hiringRoles": [
+        "AI 应用开发工程师",
+        "内容安全算法工程师",
+        "推荐系统算法工程师"
+      ],
+      "whyWatch": "适合关注大规模应用场景、内容安全和平台工程岗位。",
+      "realtimeNotice": "招聘数量为 Demo 估算，不代表 2026-05-29 实时招聘页。",
+      "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+    }
+  ],
+  "weeklyBrief": {
+    "id": "weekly-brief-2026-05-22-2026-05-28",
+    "title": "AI 招聘市场周报（2026-05-22 至 2026-05-28）",
+    "period": {
+      "start": "2026-05-22",
+      "end": "2026-05-28",
+      "timezone": "Asia/Shanghai"
+    },
+    "generatedBy": "preset_demo_data",
+    "estimateLabel": "竞赛 Demo 估算 / 公开资料综合",
+    "summary": "2026-05-22 至 2026-05-28 的预置周报显示，Agent 开发、RAG 生产化和 AI 安全治理是演示市场中的三条主线。招聘方更看重候选人能否把模型能力转化为稳定业务流程，而不是只会调用通用模型接口。",
+    "highlights": [
+      {
+        "id": "agent-demand",
+        "title": "Agent 开发工程师需求抬升",
+        "detail": "Demo 样本中，工具调用、权限控制、失败回放和日志追踪成为高频关键词。",
+        "impact": "应用层候选人需要准备可运行的多步骤 Agent 项目。",
+        "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+      },
+      {
+        "id": "rag-production",
+        "title": "RAG 项目从验证阶段转向生产化",
+        "detail": "检索召回、权限隔离、评测集、成本治理成为面试重点。",
+        "impact": "只会拼接向量库和模型 API 的简历竞争力下降。",
+        "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+      },
+      {
+        "id": "embodied-ai",
+        "title": "具身智能赛道保持升温",
+        "detail": "机器人算法、仿真平台和多模态感知岗位在 Demo 样本中占比提升。",
+        "impact": "具备控制、感知、仿真和工程部署交叉经验的人才更稀缺。",
+        "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+      },
+      {
+        "id": "fake-ai-risk",
+        "title": "包装成 AI 的低质岗位仍需识别",
+        "detail": "风险话术集中在零基础高薪、招转培、传统开发改名和数据标注包装算法岗。",
+        "impact": "投递前应核实 AI 工作占比、团队结构、合同主体和培训收费条款。",
+        "estimateLabel": "竞赛 Demo 估算 / 公开资料综合"
+      }
+    ],
+    "recommendedActions": [
+      "准备一个可演示的 RAG 或 Agent 项目，包含指标、日志、失败处理和权限边界。",
+      "投递前检查 JD 是否列出模型、数据、评测、推理部署或工程链路。",
+      "面试中主动追问 AI 工作占比、上线指标、团队分工和数据来源。"
+    ],
+    "disclaimer": "此周报为竞赛 Demo 预置内容，不是实时市场周报，也不是任何招聘平台的实时统计。"
+  },
+  "dataSources": {
+    "statementTitle": "数据来源声明",
+    "displayText": "数据来源：智联招聘 2025 AI 人才报告、脉脉 2025 人才迁徙报告、Boss 直聘/猎聘公开 JD 区间与公开行业资料综合。所有岗位数、占比、薪资、热度和公司招聘数量均为竞赛 Demo 估算或公开资料综合，仅用于演示参考，实际薪资与岗位信息以企业正式 JD 为准。",
+    "items": [
+      {
+        "name": "智联招聘 2025 AI 人才报告",
+        "usage": "用于 Demo 市场需求、人才供需和岗位方向口径参考。"
+      },
+      {
+        "name": "脉脉 2025 人才迁徙报告",
+        "usage": "用于 Demo 人才流动、热门城市和岗位竞争口径参考。"
+      },
+      {
+        "name": "Boss 直聘/猎聘公开 JD 区间",
+        "usage": "用于 Demo 薪资区间、技能关键词和经验段拆分参考。"
+      },
+      {
+        "name": "公开行业资料综合",
+        "usage": "用于 Demo 公司方向、技术栈趋势和周报摘要整理。"
+      }
+    ],
+    "limitations": [
+      "未接入实时招聘平台 API。",
+      "未进行实时网页抓取。",
+      "不代表任何公司的真实招聘数量、薪资承诺或岗位开放状态。",
+      "仅用于 New Era 竞赛 Demo 的离线展示和 API fallback。"
+    ]
+  },
+  "fallbackStates": {
+    "loadingText": "正在加载 2026 Q1 行业洞察预置数据...",
+    "unavailableText": "部分数据暂不可用，已切换到竞赛 Demo 预置数据。",
+    "briefGeneratingText": "AI 正在基于预置市场资料生成周报摘要..."
+  }
+}

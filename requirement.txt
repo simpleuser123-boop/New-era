@@ -1,0 +1,46 @@
+# New Era 依赖清单
+#
+# 本项目是 Next.js / Node.js 前后端一体应用，不是 Python 项目。
+# 请不要使用：pip install -r requirement.txt
+#
+# 评委在 PyCharm 中使用时：
+# 1. 先安装 Node.js >=20.9.0 和 npm。
+# 2. 用 PyCharm 打开项目根目录。
+# 3. 在 PyCharm 底部 Terminal 中运行：
+#      $deps = Get-Content .\requirement.txt | Where-Object { $_.Trim() -and $_ -notmatch '^\s*#' }
+#      npm install $deps
+#
+# 如果希望严格按照 package-lock.json 安装锁定版本，也可以运行：
+#      npm ci
+#
+# 启动项目：
+#      npm run dev
+#
+# 浏览器访问：
+#      http://localhost:3000
+
+# 运行依赖
+better-sqlite3@^12.10.0
+cheerio@^1.2.0
+framer-motion@^12.40.0
+jszip@^3.10.1
+lucide-react@^1.16.0
+mammoth@^1.12.0
+next@16.2.6
+pdf-parse@^2.4.5
+react@19.2.6
+react-dom@19.2.6
+word-extractor@^1.0.4
+zod@^4.4.3
+
+# 开发与构建依赖
+@tailwindcss/postcss@4.3.0
+@types/better-sqlite3@^7.6.13
+@types/node@^24.10.1
+@types/react@^19.2.7
+@types/react-dom@^19.2.3
+eslint@^9.39.1
+eslint-config-next@16.2.6
+postcss@^8.5.6
+tailwindcss@4.3.0
+typescript@^5.9.3
