@@ -33,6 +33,7 @@ pnpm-debug.log*
 
 # local verification logs and root-level screenshots/media
 *.log
+*.md
 /*.png
 /*.jpg
 /*.jpeg
